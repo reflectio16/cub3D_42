@@ -6,7 +6,7 @@
 #    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/02/24 18:32:50 by fmoulin          ###   ########.fr        #
+#    Updated: 2026/02/25 15:05:35 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 # === Compilation ===
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -O0
 IFLAGS = -I$(INC_DIR) -Ilibft -Imlx
 RM = rm -f
 

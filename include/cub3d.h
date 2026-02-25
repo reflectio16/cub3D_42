@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/24 18:35:57 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/02/25 14:28:43 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
+# include "../libft/ft_printf.h"
+# include "../libft/get_next_line.h"
 // # include "defines.h"
 // # include "parsing.h"
 // # include "rendering.h"
