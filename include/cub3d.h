@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/25 14:28:43 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/02/26 17:52:36 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,49 @@ typedef struct s_img
 	int		endian;
     int     width;
     int     height;
+	
 }   t_img;
 
-typedef struct s_data
+typedef struct s_mlx
 {
-    char    **map;
 	char	*name;
 	void	*mlx_connection;
 	void	*mlx_window;
+	t_img	img;
+	
+}	t_mlx;
+
+typedef struct s_player
+{
+    double  x;
+    double  y;
+    double  dir_x;
+    double  dir_y;
+    double  plane_x;
+    double  plane_y;
+        
+}   t_player;
+
+typedef struct s_map
+{
+    char    **map;
     int     map_width;
     int     map_height;
-    double  player_x;
-    double  player_y;
-    double  player_angle;
-	t_img	img;
+	t_player	player;
     t_img   tex_north;
     t_img   tex_south;
     t_img   tex_west;
     t_img   tex_east;
         
-}   t_data;
+}   t_map;
 
-void	map_init(t_data *map);
-int		close_handler(t_data *map);
-int		key_handler(int keysym, t_data *map);
-void	handle_pixel(int x, int y, t_data *map, int color);
-void	map_render(t_data *map);
+void	cub_init(t_mlx *mlx, t_map *map);
+void	map_init(t_map *map);
+void	player_init(t_map *map);
+int		close_handler(t_mlx *mlx);
+int		key_handler(int keysym, t_mlx *mlx);
+void	handle_pixel(int x, int y, t_mlx *mlx, int color);
+void	map_render(t_mlx *mlx, t_map *map);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 #endif
