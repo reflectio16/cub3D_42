@@ -6,11 +6,28 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:58:41 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/25 16:56:03 by meelma           ###   ########.fr       */
+/*   Updated: 2026/02/26 16:05:29 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/parsing.h"
+
+/* ** Helper Functiom for more readable test output.
+** Not a part of actual code.
+** Will be deleted later on */
+static const    char *line_type_to_str(t_line_type type)
+{
+    if (type == LINE_EMPTY)
+        return ("EMPTY");
+    else if (type == LINE_TEXTURE)
+        return ("TEXTURE");
+    else if (type == LINE_COLOR)
+        return ("COLOR");
+    else if (type == LINE_MAP)
+        return ("MAP");
+    return ("INVALID");
+}
 
 int main(int ac, char** av)
 {
@@ -37,9 +54,8 @@ int main(int ac, char** av)
     }
     while((line = get_next_line(fd)) != NULL)
     {
-        printf("%s", line);
+        printf("Line Type :[%s] %s", line_type_to_str(get_line_type(line)), line);
         free(line);
-        
     }
     close(fd);
     return (0);

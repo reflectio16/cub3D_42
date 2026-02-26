@@ -6,7 +6,7 @@
 #    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/02/25 16:13:56 by meelma           ###   ########.fr        #
+#    Updated: 2026/02/26 14:14:36 by meelma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ NAME = cub3d
 # === Fichiers sources ===
 
 SRC_SRCS = main.c
-GNL_SRCS = get_next_line.c get_next_line_utils.c
+PARSE_SRCS = parse_utils.c
+GNL_SRCS = get_next_line.c get_next_line_utils.c \
+			
 
-
-OBJS = $(SRC_OBJS) $(GNL_OBJS)
+OBJS = $(SRC_OBJS) $(PARSE_OBJS) $(GNL_OBJS)
 
 # === Répertoires ===
 SRC_DIR = src
@@ -29,6 +30,7 @@ INC_DIR = includes
 
 # === Objets ===
 SRC_OBJS = $(SRC_SRCS:%.c=$(OBJ_DIR)/src/%.o)
+PARSE_OBJS = $(PARSE_SRCS:%.c=$(OBJ_DIR)/parsing/%.o)
 GNL_OBJS = $(GNL_SRCS:%.c=$(OBJ_DIR)/gnl/%.o)
 
 # === Compilation ===
@@ -74,6 +76,10 @@ $(NAME): $(OBJS)
 # === Compilation des objets ===
 $(OBJ_DIR)/src/%.o: src/%.c
 	@mkdir -p $(OBJ_DIR)/src
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/parsing/%.o: src/parsing/%.c
+	@mkdir -p $(OBJ_DIR)/parsing
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/gnl/%.o: gnl/%.c
