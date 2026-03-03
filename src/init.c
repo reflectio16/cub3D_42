@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/02/27 17:07:48 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/03 17:17:23 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ void	map_init(t_map *map)
 	*map = (t_map){0};
 }
 
-void	wall_floor_init(t_wall_floor *wf)
-{
-	*wf = (t_wall_floor){0};
-}
+// void	wall_floor_init(t_wall_floor *wf)
+// {
+// 	*wf = (t_wall_floor){0};
+// }
 
-void	player_pixel_init(t_player_pixel *player)
-{
-	*player = (t_player_pixel){0};
-}
+// void	player_pixel_init(t_player_pixel *player)
+// {
+// 	*player = (t_player_pixel){0};
+// }
 
-void	ray_init(t_ray *ray)
-{
-	*ray = (t_ray){0};
-}
+// void	ray_init(t_ray *ray)
+// {
+// 	*ray = (t_ray){0};
+// }
 
 void	position_init(t_map *map, int i, int j)
 {

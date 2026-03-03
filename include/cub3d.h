@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/27 17:25:15 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/03 17:31:32 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,6 @@ typedef struct s_player
         
 }   t_player;
 
-typedef struct s_map
-{
-    char    **map;
-    int     map_width;
-    int     map_height;
-	t_player	player;
-    t_img   tex_north;
-    t_img   tex_south;
-    t_img   tex_west;
-    t_img   tex_east;
-        
-}   t_map;
 
 typedef struct s_wall_floor
 {
@@ -103,19 +91,66 @@ typedef struct s_ray
 	
 }	t_ray;
 
+typedef struct s_contour
+{
+	int		baseX;
+	int		baseY;
+	int		startX;
+	int		startY;
+	int		endX;
+	int		endY;
+	
+}	t_contour;
+
+typedef struct s_dda
+{
+	double	posX;
+	double	posY;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	double	deltaDistX;
+	double	deltaDistY;
+	int		stepX;
+	int		stepY;
+	double	sideDistX;
+	double	sideDistY;
+	
+}	t_dda;
+
+typedef struct s_map
+{
+	char    **map;
+	int     map_width;
+	int     map_height;
+	t_player	player;
+	t_wall_floor	wf;
+	t_player_pixel	player_pixel;
+	t_ray	ray;
+	t_contour	contour;
+	t_dda	dda;
+	t_img   tex_north;
+	t_img   tex_south;
+	t_img   tex_west;
+	t_img   tex_east;
+		
+}   t_map;
+
 //   INIT   //
 void	cub_init(t_mlx *mlx, t_map *map);
 void	map_init(t_map *map);
-void	wall_floor_init(t_wall_floor *wf);
-void	ray_init(t_ray *ray);
+// void	wall_floor_init(t_wall_floor *wf);
+// void	ray_init(t_ray *ray);
 void	player_init(t_map *map);
-void	player_pixel_init(t_player_pixel *player);
+// void	player_pixel_init(t_player_pixel *player);
 
 //   MEMORY ALLOC   //
 void	map_alloc(t_map *map, int fd);
 
 //   GETTERS   //
 void	get_map(t_map *map, int fd);
+int		get_line_width(t_map *map, int current_line);
 
 //   MLX CTRLS   //
 int		close_handler(t_mlx *mlx);
@@ -123,13 +158,19 @@ int		key_handler(int keysym, t_mlx *mlx);
 
 //   RENDER   //
 void	handle_pixel(int x, int y, t_mlx *mlx, int color);
-void	map_render(t_mlx *mlx, t_map *map);
+void	map_render(t_mlx *mlx, t_map *map, int tile);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void	draw_wall(int tile, t_wall_floor *wf, t_mlx *mlx);
-void	draw_floor(int tile, t_wall_floor *wf, t_mlx *mlx);
-void	wall_floor_render(int tile, t_wall_floor *wf, t_mlx *mlx, t_map *map);
-void	player_pixel_render(int tile, t_player_pixel *player_pixel, t_map *map, t_mlx *mlx);
-void	ray_render(int tile, t_ray *ray, t_player_pixel *player_pixel, t_wall_floor *wf, t_map *map, t_mlx *mlx);
+void	draw_wall(int tile, t_map *map, t_mlx *mlx);
+void	draw_floor(int tile, t_map *map, t_mlx *mlx);
+void	wall_floor_render(int tile, t_mlx *mlx, t_map *map);
+void	player_pixel_render(int tile, t_map *map, t_mlx *mlx);
+void	ray_render(int tile, t_map *map, t_mlx *mlx);
+void	tile_contour_render(t_map *map, t_mlx *mlx, int tile);
 
+//   DDA   //
+void	dda_debug_center(t_map *map);
+
+//   DISPLAY   //
+void	display_player_data(t_mlx *mlx, t_map *map);
 
 #endif

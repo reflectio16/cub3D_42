@@ -67,11 +67,38 @@ CAMERAX
 	explication de cameraX :
 	
 		Si ton écran fait WIDTH pixels :
-
-		Pour chaque colonne x de l’écran :
-			cameraX=2∗x/WIDTH−1
+			- Pour chaque colonne x de l’écran :
+				cameraX=2∗x/WIDTH−1
 
 		Ça donne :
-			gauche écran → -1
-			centre écran → 0
-			droite écran → +1
+			- gauche écran → -1
+			- centre écran → 0
+			- droite écran → +1
+
+
+
+DDA - DIGITAL DIFFERENTIAL ANALYZER
+
+	C'est un algorithme qui avance pas a pas dans une grille pour savoir quelle case un rayon va toucher en premier.
+
+		À chaque étape, le DDA doit choisir :
+			Est-ce que je traverse une ligne verticale ?
+			Ou une ligne horizontale ?
+
+
+
+	Calcul de deltaDistX et deltaDistY :
+
+		Si rayDirX = 0.3, ca veut dire que :
+			- à chaque unité de distance le long du rayon,
+			- x augmente de 0.3 tiles.
+		Donc pour que x augmente de 1 tile :
+			Combien faut-il avancer ?
+				- Si        1 unité → +0.3
+				- Alors    cb unité → +1 ?
+				- (c'est un simple produit en croix)
+			C’est :
+				- 1 / 0.3 = 3.33
+			Donc :
+				- deltaDistX = |1 / rayDirX|
+

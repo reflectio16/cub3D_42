@@ -6,45 +6,106 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 17:11:38 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/02/27 18:01:12 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/03 17:16:46 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ray_render(int tile, t_ray *ray, t_player_pixel *player_pixel, t_wall_floor *wf, t_map *map, t_mlx *mlx)
+void	tile_contour_render(t_map *map, t_mlx *mlx, int tile)
+{
+	map->contour.startX = map->contour.baseX;
+	map->contour.startY = map->contour.baseY;
+	map->contour.endX = map->contour.baseX + tile - 1;
+	map->contour.endY = map->contour.baseY + tile - 1;
+	while (map->contour.startX <= map->contour.endX)
+	{
+		handle_pixel(map->contour.startX, map->contour.startY, mlx, 0x0000FF);
+		map->contour.startX++;
+	}
+	map->contour.startX = map->contour.baseX;
+	map->contour.startY = map->contour.baseY;
+	while (map->contour.startX <= map->contour.endX)
+	{
+		handle_pixel(map->contour.startX, map->contour.endY, mlx, 0x0000FF);
+		map->contour.startX++;
+	}
+	map->contour.startX = map->contour.baseX;
+	map->contour.startY = map->contour.baseY;
+	while (map->contour.startY <= map->contour.endY)
+	{
+		handle_pixel(map->contour.startX, map->contour.startY, mlx, 0x0000FF);
+		map->contour.startY++;
+	}
+	map->contour.startX = map->contour.baseX;
+	map->contour.startY = map->contour.baseY;
+	while (map->contour.startY <= map->contour.endY)
+	{
+		handle_pixel(map->contour.endX, map->contour.startY, mlx, 0x0000FF);
+		map->contour.startY++;
+	}
+}
+
+void	ray_render(int tile, t_map *map, t_mlx *mlx)
 {
 	int		l;
-	int 	t;
+	int 	step;
 	int		i;
 	int		mapX;
 	int		mapY;
+	int		previous_mapX;
+	int		previous_mapY;
+	int		line_len;
 
 	l = tile * 10;
-	ray->camera_x[0] = -0.5;
-	ray->camera_x[1] = 0;
-	ray->camera_x[2] = 0.5;
+	map->ray.camera_x[0] = -0.4;
+	map->ray.camera_x[1] = 0;
+	map->ray.camera_x[2] = 0.6;
 	i = 0;
 	while (i < 3)
 	{
-		t = 0;
-		ray->x = map->player.dir_x + map->player.plane_x * ray->camera_x[i];
-		ray->y = map->player.dir_y + map->player.plane_y * ray->camera_x[i];
-		while (t < l)
+		step = 0;
+		previous_mapY = -1;
+		previous_mapX = -1;
+		line_len = 0;
+		map->ray.x = map->player.dir_x + map->player.plane_x * map->ray.camera_x[i];
+		map->ray.y = map->player.dir_y + map->player.plane_y * map->ray.camera_x[i];
+		while (step < l)
 		{
-			wf->x = player_pixel->px + ray->x * t;
-			wf->y = player_pixel->py + ray->y * t;
-			mapX = (int)(wf->x / tile);
-			mapY = (int)(wf->y / tile);
-			// TODO -> check de bounds sur mapX et mapY par rapport a mapHeight et mapWidth !!!!
-			if (map->map[mapY][mapX] == '1')
+			map->wf.x = map->player_pixel.px + map->ray.x * step;
+			map->wf.y = map->player_pixel.py + map->ray.y * step;
+			mapX = (int)(map->wf.x / tile);
+			mapY = (int)(map->wf.y / tile);
+			// mapX et mapY permettent de savoir dans quelle case on est (ex : mapX = 127 / 30 soit 4)
+			if (mapY >= 0 && mapY < map->map_height)
 			{
-				handle_pixel((int)wf->x, (int)wf->y, mlx, 0xFF0000);
-				break ;
+				if (previous_mapY != mapY)
+					line_len = get_line_width(map, mapY);
+				if (mapX >= 0 && mapX < line_len)
+				{
+					if (map->map[mapY][mapX] == '1')
+					{
+						handle_pixel((int)map->wf.x, (int)map->wf.y, mlx, 0xFF0000);
+						break ;
+					}
+				}
+				else
+					break ;
 			}
-			if (wf->x >= 0 && wf->x < WIDTH && wf->y >= 0 && wf->y < HEIGHT)
-				handle_pixel((int)wf->x, (int)wf->y, mlx, 0xFFEE00);
-			t++;
+			else
+				break ;
+			if (map->wf.x >= 0 && map->wf.x < WIDTH && map->wf.y >= 0 && map->wf.y < HEIGHT)
+			{
+				handle_pixel((int)map->wf.x, (int)map->wf.y, mlx, 0xFFEE00);
+				map->contour.baseX = mapX * tile;
+				map->contour.baseY = mapY * tile;
+				// baseX et baseY permettent de savoir a quel pixel commence la case (ex : baseX = 4 * 30 soit 120)
+				if (mapX != previous_mapX || mapY != previous_mapY)
+					tile_contour_render(map, mlx, tile);
+			}
+			previous_mapX = mapX;
+			previous_mapY = mapY;
+			step++;
 		}
 		i++;
 	}
