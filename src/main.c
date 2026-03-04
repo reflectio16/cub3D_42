@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:58:41 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/26 18:54:05 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/04 15:27:08 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int main(int ac, char** av)
     {
         if (get_line_type(line) == LINE_TEXTURE)
             parse_texture(line, &data);
+        else if (get_line_type(line) == LINE_COLOR)
+            parse_color(line, &data);
         else
             printf("Line Type :[%s] %s", line_type_to_str(get_line_type(line)), line);
         free(line);
@@ -64,7 +66,11 @@ int main(int ac, char** av)
     printf("[TEXTURE] NO: %s\n", data.textures.tex_north);
     printf("[TEXTURE] SO: %s\n", data.textures.tex_south);
     printf("[TEXTURE] WE: %s\n", data.textures.tex_west);
-    printf("[TEXTURE] EA: %s\n", data.textures.tex_east);
+    printf("[TEXTURE] EA: %s\n\n", data.textures.tex_east);
+
+    printf(" == Extract Colors ===\n");
+    printf("[COLOR] Floor: %d (0x%X)\n", data.colors.floor_color, data.colors.floor_color);
+    printf("[COLOR] Ceiling: %d (0x%X)\n", data.colors.ceiling_color, data.colors.ceiling_color);
     close(fd);
     return (0);
 }
