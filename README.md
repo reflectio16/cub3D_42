@@ -102,3 +102,19 @@ DDA - DIGITAL DIFFERENTIAL ANALYZER
 			Donc :
 				- deltaDistX = |1 / rayDirX|
 
+	perpWallDist = Perpendicular Wall Distance
+
+		le calcul :
+			perpWallDist = 
+				- si on touche un mur vertical : (mapX − posX + (1 − stepX) / 2)​ / 2
+							ou
+				- si on touche un mur horizontal : (mapY − posY + (1 − stepY) / 2)​ / 2
+		
+		A quoi ca sert :
+			cela corrige l'effet fisheye
+				- si un mur est face a nous
+				- si on lance un rayon oblique et qu'on lance un rayon droit devant nous
+				- le rayon oblique aura parcouru plus de distance que le rayon droit
+				- si on ne corrige pas cela avec le perpWallDist
+					- le programme aura l'impression que le mur touche par le rayon oblique	
+					  est plus loin que le mur touche par le rayon lance droit devant

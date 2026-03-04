@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/03 17:31:32 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/04 18:34:36 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+
+# define BLUE 0x0000FF
+# define RED 0xFF0000
+
 
 typedef struct s_img
 {
@@ -116,34 +120,33 @@ typedef struct s_dda
 	int		stepY;
 	double	sideDistX;
 	double	sideDistY;
+	int		side;
+	double	perpWallDist;
 	
 }	t_dda;
 
 typedef struct s_map
 {
-	char    **map;
-	int     map_width;
-	int     map_height;
-	t_player	player;
+	char    		**map;
+	int     		map_width;
+	int     		map_height;
+	t_player		player;
 	t_wall_floor	wf;
 	t_player_pixel	player_pixel;
-	t_ray	ray;
-	t_contour	contour;
-	t_dda	dda;
-	t_img   tex_north;
-	t_img   tex_south;
-	t_img   tex_west;
-	t_img   tex_east;
+	t_ray			ray;
+	t_contour		contour;
+	t_dda			dda;
+	t_img   		tex_north;
+	t_img   		tex_south;
+	t_img   		tex_west;
+	t_img   		tex_east;
 		
 }   t_map;
 
 //   INIT   //
 void	cub_init(t_mlx *mlx, t_map *map);
 void	map_init(t_map *map);
-// void	wall_floor_init(t_wall_floor *wf);
-// void	ray_init(t_ray *ray);
 void	player_init(t_map *map);
-// void	player_pixel_init(t_player_pixel *player);
 
 //   MEMORY ALLOC   //
 void	map_alloc(t_map *map, int fd);
@@ -165,10 +168,11 @@ void	draw_floor(int tile, t_map *map, t_mlx *mlx);
 void	wall_floor_render(int tile, t_mlx *mlx, t_map *map);
 void	player_pixel_render(int tile, t_map *map, t_mlx *mlx);
 void	ray_render(int tile, t_map *map, t_mlx *mlx);
-void	tile_contour_render(t_map *map, t_mlx *mlx, int tile);
+void	tile_contour_render(int tile, t_map *map, t_mlx *mlx, int color);
 
 //   DDA   //
-void	dda_debug_center(t_map *map);
+void	dda_render(int tile, t_map *map, t_mlx *mlx);
+void	dda_debug_ray(int tile, t_map *map, t_mlx *mlx);
 
 //   DISPLAY   //
 void	display_player_data(t_mlx *mlx, t_map *map);

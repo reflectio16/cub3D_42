@@ -6,13 +6,13 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 17:11:38 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/03 18:04:11 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/04 17:29:06 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	tile_contour_render(t_map *map, t_mlx *mlx, int tile)
+void	tile_contour_render(int tile, t_map *map, t_mlx *mlx, int color)
 {
 	map->contour.startX = map->contour.baseX;
 	map->contour.startY = map->contour.baseY;
@@ -20,28 +20,28 @@ void	tile_contour_render(t_map *map, t_mlx *mlx, int tile)
 	map->contour.endY = map->contour.baseY + tile - 1;
 	while (map->contour.startX <= map->contour.endX)
 	{
-		handle_pixel(map->contour.startX, map->contour.startY, mlx, 0x0000FF);
+		handle_pixel(map->contour.startX, map->contour.startY, mlx, color);
 		map->contour.startX++;
 	}
 	map->contour.startX = map->contour.baseX;
 	map->contour.startY = map->contour.baseY;
 	while (map->contour.startX <= map->contour.endX)
 	{
-		handle_pixel(map->contour.startX, map->contour.endY, mlx, 0x0000FF);
+		handle_pixel(map->contour.startX, map->contour.endY, mlx, color);
 		map->contour.startX++;
 	}
 	map->contour.startX = map->contour.baseX;
 	map->contour.startY = map->contour.baseY;
 	while (map->contour.startY <= map->contour.endY)
 	{
-		handle_pixel(map->contour.startX, map->contour.startY, mlx, 0x0000FF);
+		handle_pixel(map->contour.startX, map->contour.startY, mlx, color);
 		map->contour.startY++;
 	}
 	map->contour.startX = map->contour.baseX;
 	map->contour.startY = map->contour.baseY;
 	while (map->contour.startY <= map->contour.endY)
 	{
-		handle_pixel(map->contour.endX, map->contour.startY, mlx, 0x0000FF);
+		handle_pixel(map->contour.endX, map->contour.startY, mlx, color);
 		map->contour.startY++;
 	}
 }
@@ -58,9 +58,9 @@ void	ray_render(int tile, t_map *map, t_mlx *mlx)
 	int		line_len;
 
 	l = tile * 100;
-	map->ray.camera_x[0] = -0.4;
+	map->ray.camera_x[0] = -0.5;
 	map->ray.camera_x[1] = 0;
-	map->ray.camera_x[2] = 0.6;
+	map->ray.camera_x[2] = 0.5;
 	i = 0;
 	while (i < 3)
 	{
@@ -101,7 +101,7 @@ void	ray_render(int tile, t_map *map, t_mlx *mlx)
 				map->contour.baseY = mapY * tile;
 				// baseX et baseY permettent de savoir a quel pixel commence la case (ex : baseX = 4 * 30 soit 120)
 				if (mapX != previous_mapX || mapY != previous_mapY)
-					tile_contour_render(map, mlx, tile);
+					tile_contour_render(tile, map, mlx, BLUE);
 			}
 			previous_mapX = mapX;
 			previous_mapY = mapY;

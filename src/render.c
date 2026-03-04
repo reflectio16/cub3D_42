@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:19:28 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/03 18:03:57 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/04 18:34:36 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	map_render(t_mlx *mlx, t_map *map, int tile)
 	player_pixel_render(tile, map, mlx);
 
 	// directional arrow
-	ray_render(tile, map, mlx);
+	// ray_render(tile, map, mlx);
 	
 	// dda render
-	dda_debug_center(map);
+	dda_render(tile, map, mlx);
 
 	// image on screen
 	mlx_put_image_to_window(mlx->mlx_connection,
