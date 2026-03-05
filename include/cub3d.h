@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/04 18:34:36 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/05 16:55:23 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@
 
 # define BLUE 0x0000FF
 # define RED 0xFF0000
-
+# define PSYCHEDELIC_PURPLE 0xDD00FF
+# define ACID_GREEN 0xDDFF00
+# define ELECTRIC_BLUE 0x5E00FF
+# define SAPPHIRE 0x00245F
 
 typedef struct s_img
 {
@@ -89,7 +92,6 @@ typedef struct s_player_pixel
 
 typedef struct s_ray
 {
-	double	camera_x[3];
 	double	x;
 	double	y;
 	
@@ -105,6 +107,16 @@ typedef struct s_contour
 	int		endY;
 	
 }	t_contour;
+
+typedef struct s_texture
+{
+	int		x;
+	int		y;
+	double		wallX;
+	double		wallY;
+	int		width;
+	
+}	t_texture;
 
 typedef struct s_dda
 {
@@ -122,6 +134,10 @@ typedef struct s_dda
 	double	sideDistY;
 	int		side;
 	double	perpWallDist;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		screenX;
 	
 }	t_dda;
 
@@ -136,6 +152,7 @@ typedef struct s_map
 	t_ray			ray;
 	t_contour		contour;
 	t_dda			dda;
+	t_texture		tex;
 	t_img   		tex_north;
 	t_img   		tex_south;
 	t_img   		tex_west;
@@ -159,20 +176,30 @@ int		get_line_width(t_map *map, int current_line);
 int		close_handler(t_mlx *mlx);
 int		key_handler(int keysym, t_mlx *mlx);
 
+
+
 //   RENDER   //
+	// global
 void	handle_pixel(int x, int y, t_mlx *mlx, int color);
-void	map_render(t_mlx *mlx, t_map *map, int tile);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void	draw_wall(int tile, t_map *map, t_mlx *mlx);
-void	draw_floor(int tile, t_map *map, t_mlx *mlx);
-void	wall_floor_render(int tile, t_mlx *mlx, t_map *map);
+
+	// minimap
 void	player_pixel_render(int tile, t_map *map, t_mlx *mlx);
-void	ray_render(int tile, t_map *map, t_mlx *mlx);
 void	tile_contour_render(int tile, t_map *map, t_mlx *mlx, int color);
+void	draw_floor_mm(int tile, t_map *map, t_mlx *mlx);
+void	draw_wall_mm(int tile, t_map *map, t_mlx *mlx);
+void	wall_floor_render(int tile, t_mlx *mlx, t_map *map);
+void	ray_render(int tile, t_map *map, t_mlx *mlx);
+
+	// 3D
+void	cub_render(t_mlx *mlx, t_map *map, int tile);
+void	draw_ceiling(int y, t_map *map, t_mlx *mlx);
+void	draw_wall(int x, int y, t_map *map, t_mlx *mlx);
+void	draw_floor(int y, t_map *map, t_mlx *mlx);
 
 //   DDA   //
 void	dda_render(int tile, t_map *map, t_mlx *mlx);
-void	dda_debug_ray(int tile, t_map *map, t_mlx *mlx);
+void	dda_debug_ray(int tile, int x, t_map *map, t_mlx *mlx);
 
 //   DISPLAY   //
 void	display_player_data(t_mlx *mlx, t_map *map);

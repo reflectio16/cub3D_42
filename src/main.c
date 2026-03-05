@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:27:03 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/03 17:34:56 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/05 14:58:24 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		int		fd;
 		int		tile;
 
-		tile = 30;
+		tile = 5;
 		cub_init(&mlx, &map);
 		fd = open(argv[1], O_RDONLY);
 		if (fd < 0)
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 		close(fd);
 		
 		player_init(&map);
-		map_render(&mlx, &map, tile);
+		cub_render(&mlx, &map, tile);
 		mlx_loop(mlx.mlx_connection);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:22:41 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/02/26 14:45:03 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/05 14:58:24 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	key_handler(int keysym, t_mlx *mlx)
 	// manage left and right arrow keys
 	// manage W, A, S, and D keys 
 	
-	// map_render(map);
+	// cub_render(map);
 
 	return (0);
 }

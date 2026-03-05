@@ -6,13 +6,13 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 15:55:44 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/03 17:02:35 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/05 14:56:46 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_wall(int tile, t_map *map, t_mlx *mlx)
+void	draw_wall_mm(int tile, t_map *map, t_mlx *mlx)
 {
 	map->wf.y = -1;
 	while (++map->wf.y < tile)
@@ -27,7 +27,7 @@ void	draw_wall(int tile, t_map *map, t_mlx *mlx)
 	}
 }
 
-void	draw_floor(int tile, t_map *map, t_mlx *mlx)
+void	draw_floor_mm(int tile, t_map *map, t_mlx *mlx)
 {
 	map->wf.y = -1;
 	while (++map->wf.y < tile)
@@ -52,9 +52,9 @@ void	wall_floor_render(int tile, t_mlx *mlx, t_map *map)
 		while (map->map[map->wf.i][map->wf.j])
 		{
 			if (map->map[map->wf.i][map->wf.j] == '1')
-				draw_wall(tile, map, mlx);
+				draw_wall_mm(tile, map, mlx);
 			else if (map->map[map->wf.i][map->wf.j] == '0')
-				draw_floor(tile, map, mlx);
+				draw_floor_mm(tile, map, mlx);
 			map->wf.j++;
 		}
 		map->wf.i++;

@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 17:11:38 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/04 17:29:06 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/05 11:14:18 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,67 +46,67 @@ void	tile_contour_render(int tile, t_map *map, t_mlx *mlx, int color)
 	}
 }
 
-void	ray_render(int tile, t_map *map, t_mlx *mlx)
-{
-	int		l;
-	int 	step;
-	int		i;
-	int		mapX;
-	int		mapY;
-	int		previous_mapX;
-	int		previous_mapY;
-	int		line_len;
+// void	ray_render(int tile, t_map *map, t_mlx *mlx)
+// {
+// 	int		l;
+// 	int 	step;
+// 	int		i;
+// 	int		mapX;
+// 	int		mapY;
+// 	int		previous_mapX;
+// 	int		previous_mapY;
+// 	int		line_len;
 
-	l = tile * 100;
-	map->ray.camera_x[0] = -0.5;
-	map->ray.camera_x[1] = 0;
-	map->ray.camera_x[2] = 0.5;
-	i = 0;
-	while (i < 3)
-	{
-		step = 0;
-		previous_mapY = -1;
-		previous_mapX = -1;
-		line_len = 0;
-		map->ray.x = map->player.dir_x + map->player.plane_x * map->ray.camera_x[i];
-		map->ray.y = map->player.dir_y + map->player.plane_y * map->ray.camera_x[i];
-		while (step < l)
-		{
-			map->wf.x = map->player_pixel.px + map->ray.x * step;
-			map->wf.y = map->player_pixel.py + map->ray.y * step;
-			mapX = (int)(map->wf.x / tile);
-			mapY = (int)(map->wf.y / tile);
-			// mapX et mapY permettent de savoir dans quelle case on est (ex : mapX = 127 / 30 soit 4)
-			if (mapY >= 0 && mapY < map->map_height)
-			{
-				if (previous_mapY != mapY)
-					line_len = get_line_width(map, mapY);
-				if (mapX >= 0 && mapX < line_len)
-				{
-					if (map->map[mapY][mapX] == '1')
-					{
-						handle_pixel((int)map->wf.x, (int)map->wf.y, mlx, 0xFF0000);
-						break ;
-					}
-				}
-				else
-					break ;
-			}
-			else
-				break ;
-			if (map->wf.x >= 0 && map->wf.x < WIDTH && map->wf.y >= 0 && map->wf.y < HEIGHT)
-			{
-				handle_pixel((int)map->wf.x, (int)map->wf.y, mlx, 0xFFEE00);
-				map->contour.baseX = mapX * tile;
-				map->contour.baseY = mapY * tile;
-				// baseX et baseY permettent de savoir a quel pixel commence la case (ex : baseX = 4 * 30 soit 120)
-				if (mapX != previous_mapX || mapY != previous_mapY)
-					tile_contour_render(tile, map, mlx, BLUE);
-			}
-			previous_mapX = mapX;
-			previous_mapY = mapY;
-			step++;
-		}
-		i++;
-	}
-}
+// 	l = tile * 100;
+// 	map->ray.camera_x[0] = -0.5;
+// 	map->ray.camera_x[1] = 0;
+// 	map->ray.camera_x[2] = 0.5;
+// 	i = 0;
+// 	while (i < 3)
+// 	{
+// 		step = 0;
+// 		previous_mapY = -1;
+// 		previous_mapX = -1;
+// 		line_len = 0;
+// 		map->ray.x = map->player.dir_x + map->player.plane_x * map->ray.camera_x[i];
+// 		map->ray.y = map->player.dir_y + map->player.plane_y * map->ray.camera_x[i];
+// 		while (step < l)
+// 		{
+// 			map->wf.x = map->player_pixel.px + map->ray.x * step;
+// 			map->wf.y = map->player_pixel.py + map->ray.y * step;
+// 			mapX = (int)(map->wf.x / tile);
+// 			mapY = (int)(map->wf.y / tile);
+// 			// mapX et mapY permettent de savoir dans quelle case on est (ex : mapX = 127 / 30 soit 4)
+// 			if (mapY >= 0 && mapY < map->map_height)
+// 			{
+// 				if (previous_mapY != mapY)
+// 					line_len = get_line_width(map, mapY);
+// 				if (mapX >= 0 && mapX < line_len)
+// 				{
+// 					if (map->map[mapY][mapX] == '1')
+// 					{
+// 						handle_pixel((int)map->wf.x, (int)map->wf.y, mlx, 0xFF0000);
+// 						break ;
+// 					}
+// 				}
+// 				else
+// 					break ;
+// 			}
+// 			else
+// 				break ;
+// 			if (map->wf.x >= 0 && map->wf.x < WIDTH && map->wf.y >= 0 && map->wf.y < HEIGHT)
+// 			{
+// 				handle_pixel((int)map->wf.x, (int)map->wf.y, mlx, 0xFFEE00);
+// 				map->contour.baseX = mapX * tile;
+// 				map->contour.baseY = mapY * tile;
+// 				// baseX et baseY permettent de savoir a quel pixel commence la case (ex : baseX = 4 * 30 soit 120)
+// 				if (mapX != previous_mapX || mapY != previous_mapY)
+// 					tile_contour_render(tile, map, mlx, BLUE);
+// 			}
+// 			previous_mapX = mapX;
+// 			previous_mapY = mapY;
+// 			step++;
+// 		}
+// 		i++;
+// 	}
+// }

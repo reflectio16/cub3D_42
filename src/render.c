@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:19:28 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/04 18:34:36 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/05 14:58:24 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void	handle_pixel(int x, int y, t_mlx *mlx, int color)
 		my_mlx_pixel_put(&mlx->img, x, y, color);		
 }
 
-void	map_render(t_mlx *mlx, t_map *map, int tile)
+void	cub_render(t_mlx *mlx, t_map *map, int tile)
 {
-	wall_floor_render(tile, mlx, map);
-
-	// player position pixel filling
-	player_pixel_render(tile, map, mlx);
-
 	// directional arrow
 	// ray_render(tile, map, mlx);
 	
 	// dda render
 	dda_render(tile, map, mlx);
+	
+	wall_floor_render(tile, mlx, map);
 
+	// player position pixel filling
+	player_pixel_render(tile, map, mlx);
+	
 	// image on screen
 	mlx_put_image_to_window(mlx->mlx_connection,
 		mlx->mlx_window, mlx->img.img, 0, 0);

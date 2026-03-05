@@ -68,7 +68,7 @@ CAMERAX
 	
 		Si ton écran fait WIDTH pixels :
 			- Pour chaque colonne x de l’écran :
-				cameraX=2∗x/WIDTH−1
+				cameraX = 2 ∗ x / WIDTH − 1
 
 		Ça donne :
 			- gauche écran → -1
@@ -118,3 +118,32 @@ DDA - DIGITAL DIFFERENTIAL ANALYZER
 				- si on ne corrige pas cela avec le perpWallDist
 					- le programme aura l'impression que le mur touche par le rayon oblique	
 					  est plus loin que le mur touche par le rayon lance droit devant
+
+
+PLAFOND / MURS / SOL
+
+	Taille d'un mur en hauteur :
+		lineHeight = HEIGHT / perpWallDist
+			Exemples :
+				Si HEIGHT = 1080 :
+					perpWallDist = 1.0 → lineHeight = 1080 (mur énorme)
+					perpWallDist = 2.0 → lineHeight = 540
+					perpWallDist = 4.0 → lineHeight = 270
+
+		drawStart = -lineHeight/2 + HEIGHT/2
+			Exemple :
+				Imaginons HEIGHT=1080 et lineHeight=540 :
+					centre = 540
+					moitié = 270
+				Donc :
+					drawStart = - 270 + 540 = 270
+					Le mur commence à y = 270.
+
+		drawEnd = lineHeight/2 + HEIGHT/2
+			Exemple :
+				toujours avec HEIGHT=1080 et lineHeight=540 :
+					centre = 540
+					moitié = 270
+				Donc :
+					drawStart = 270 + 540 = 810
+					Le mur finit à y = 810.
