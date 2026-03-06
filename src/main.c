@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:58:41 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/06 15:12:24 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/06 16:44:26 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,13 @@ int main(int ac, char **av)
     }
     // Convert list to array
     data.map = list_to_array(map_list, &data.map_height);
-    
     data.map_width = get_map_width(data.map);
+    find_player(&data);
     if (validate_map(&data) == -1)
     {
         printf("Error: Invalid Map!\n");
         return (1);
     }
-    
-    find_player(&data);
-
     printf("=== Map (%d rows) ===\n", data.map_height);
     int i = 0;
     while (data.map[i])
