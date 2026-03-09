@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:33:30 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/06 16:41:23 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/09 13:48:33 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,16 @@ static int count_players(char **map)
 
 int validate_map(t_data *data)
 {
-    if (!data->map)
-        return (-1);
+    int player_count;
+    
     if (validate_map_chars(data->map) == -1)
-        return (-1);
-    if (count_players(data->map) != 1)
-        return (-1);
+        return (print_error("Invalid character in map"));
+    player_count = count_players(data->map);
+    if (player_count == 0)
+        return (print_error("No player found"));
+    else if (player_count > 1)
+        return (print_error("Multiple players in map"));
     if (check_map_closed(data) == -1)
-        return (-1);
+        return (print_error("Map is not closed by walls"));
     return (0);
 }

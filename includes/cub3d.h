@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/05 14:46:12 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/09 15:27:10 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 # include "../Libft/libft.h"
 # include "../gnl/get_next_line.h"
+
+# define M_PI 3.14159265358979323846
 
 typedef struct s_img
 {

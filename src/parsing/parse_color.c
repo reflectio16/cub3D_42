@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 13:46:44 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/04 15:29:02 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/09 15:45:29 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,19 @@ int parse_color(char *line, t_data *data)
         i++;
     color = extract_rgb(&line[i]);
     if (color == -1)
-        return (-1);
+        return (print_error("Invalid color format"));
     if (line[0] == 'F')
-            data->colors.floor_color = color;
+    {
+        if (data->colors.floor_color != -1)
+            return (print_error("Duplicate color path"));
+        data->colors.floor_color = color;
+    }
     else if (line[0] == 'C')
-            data->colors.ceiling_color = color;
+    {
+        if (data->colors.ceiling_color != -1)
+            return (print_error("Duplicate color path"));
+        data->colors.ceiling_color = color;
+    }    
     return (0);
 }
 

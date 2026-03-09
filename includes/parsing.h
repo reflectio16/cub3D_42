@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:49:45 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/06 16:36:14 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/09 16:00:47 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_color
 /* ===  Ultilities === */ 
 void        free_split(char **arr);
 t_line_type get_line_type(char *line);
+int         print_error(char *msg);
+void        free_data(t_data *data);
+int         clean_exit(int fd, char *line, int ret);
 
 /* === Parser Functions === */ 
 int         parse_texture(char *line, t_data *data);
@@ -55,6 +58,11 @@ int         get_map_width(char **map);
 int         find_player(t_data *data);
 int         validate_map(t_data *data);
 int         check_map_closed(t_data *data);
+
+/* === Init. c === */
+int         check_args(int ac, char *filename);
+int         parse_file(char *filename, t_data *data, t_list **map_list);
+int         setup_map(t_data *data, t_list *map_list);
 
 
 #endif

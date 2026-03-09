@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:08:15 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/05 15:26:24 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/09 15:27:46 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ static int  loop_map(t_data *data, int row, int col)
         data->player_x = col + 0.5;
         data->player_y = row + 0.5;
         if (data->map[row][col] == 'N')
-            data->player_angle = 1.5 * 3.14159;
+            data->player_angle = 1.5 * M_PI;
         else if (data->map[row][col] == 'S')
-            data->player_angle = 0.5 * 3.14159;
+            data->player_angle = 0.5 * M_PI;
         else if (data->map[row][col] == 'E')
             data->player_angle = 0;
         else if (data->map[row][col] == 'W')
-            data->player_angle = 3.14159;
+            data->player_angle = M_PI;
         return (0);
     }
     return (-1);
