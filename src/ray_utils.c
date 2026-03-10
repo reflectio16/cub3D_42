@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 17:11:38 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/06 16:36:16 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 15:47:40 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	ray_render(int tile, t_map *map, t_mlx *mlx)
 				map->contour.baseX = mapX * tile;
 				map->contour.baseY = mapY * tile;
 				// baseX et baseY permettent de savoir a quel pixel commence la case (ex : baseX = 4 * 30 soit 120)
-				if (mapX != previous_mapX || mapY != previous_mapY)
-					tile_contour_render(tile, map, mlx, BLUE);
+				// if (mapX != previous_mapX || mapY != previous_mapY)
+				// 	tile_contour_render(tile, map, mlx, BLUE);
 			}
 			previous_mapX = mapX;
 			previous_mapY = mapY;

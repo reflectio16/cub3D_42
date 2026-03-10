@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 15:11:40 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/06 19:53:48 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:14:22 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,34 @@ void	draw_ceiling(int y, t_map *map, t_mlx *mlx)
 
 void	draw_wall(int x, int y, t_map *map, t_mlx *mlx)
 {
-	// int	shade;
-	// int	color;
-
-	// shade = map->tex.x * 255 / (map->tex.width - 1);
-	// color = 0;
-	t_img *current_tex;
-
-	current_tex = &map->tex_north;
-	if (map->dda.side == 0)
+	int	color;
+	t_img	*current_tex;
+	double	step;
+	double	texPos;
+	int		texY;
+	
+	color = 0;
+	current_tex = NULL;
+	if (map->dda.side == 0 && map->dda.rayDirX > 0)
+		current_tex = &map->tex_west;
+	else if (map->dda.side == 0 && map->dda.rayDirX < 0)
+		current_tex = &map->tex_east;
+	else if (map->dda.side == 1 && map->dda.rayDirY < 0)
+		current_tex = &map->tex_south;
+	else if (map->dda.side == 1 && map->dda.rayDirY > 0)
+		current_tex = &map->tex_north;
+	step = (double)current_tex->height / map->dda.lineHeight;
+	texPos = (map->dda.drawStart - HEIGHT / 2 + map->dda.lineHeight / 2) * step;
+	
+	map->dda.screenX = x;
+	y = map->dda.drawStart;
+	while (y < map->dda.drawEnd)
 	{
-		map->dda.screenX = x;
-		y = map->dda.drawStart;
-		while (y < map->dda.drawEnd)
-		{
-			// color = (shade << 16);
-			handle_pixel(map->dda.screenX, y, mlx, );
-			y++;
-		}
-	}
-	else
-	{
-		map->dda.screenX = x;
-		y = map->dda.drawStart;
-		while (y < map->dda.drawEnd)
-		{
-			// color = (shade << 8);
-			handle_pixel(map->dda.screenX, y, mlx, color);
-			y++;
-		}
+		texY = (int)texPos;
+		color = my_mlx_pixel_read(current_tex, map->tex.x, texY);
+		handle_pixel(map->dda.screenX, y, mlx, color);
+		texPos += step;
+		y++;
 	}
 }
 
@@ -60,7 +59,7 @@ void	draw_floor(int y, t_map *map, t_mlx *mlx)
 	y = map->dda.drawEnd;
 	while (y < HEIGHT)
 	{
-		handle_pixel(map->dda.screenX, y, mlx, SAPPHIRE);
+		handle_pixel(map->dda.screenX, y, mlx, PRUNE);
 		y++;
 	}
 }

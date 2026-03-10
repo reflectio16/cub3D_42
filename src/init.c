@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/06 18:56:40 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:03:26 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,5 @@ void	cub_init(t_mlx *mlx, t_map *map)
 	events_init(mlx);
 	
 	map_init(map);
+	load_all_textures(mlx, map);
 }

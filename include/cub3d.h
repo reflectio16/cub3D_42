@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/06 19:45:53 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:15:05 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define PSYCHEDELIC_PURPLE 0xDD00FF
 # define ACID_GREEN 0xDDFF00
 # define ELECTRIC_BLUE 0x5E00FF
-# define SAPPHIRE 0x00245F
+# define PRUNE 0x5F0024
 
 typedef struct s_img
 {
@@ -176,14 +176,15 @@ int		get_line_width(t_map *map, int current_line);
 
 //   MLX CTRLS   //
 int		close_handler(t_mlx *mlx);
-int		key_handler(int keysym, t_mlx *mlx);
-
+int		key_handler(int keysym, t_mlx *mlx, t_map *map);
+void	rotate_player(t_map *map, int rot);
 
 
 //   RENDER   //
 	// global
 void	handle_pixel(int x, int y, t_mlx *mlx, int color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		my_mlx_pixel_read(t_img *data, int x, int y);
 
 	// minimap
 void	player_pixel_render(int tile, t_map *map, t_mlx *mlx);
@@ -208,5 +209,6 @@ void	display_player_data(t_mlx *mlx, t_map *map);
 
 //   TEXTURES   //
 void	load_texture(t_mlx *mlx, t_img *texture, char *path);
+void	load_all_textures(t_mlx *mlx, t_map *map);
 
 #endif

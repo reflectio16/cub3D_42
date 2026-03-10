@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:22:41 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/05 14:58:24 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:15:27 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ int	close_handler(t_mlx *mlx)
 	exit(EXIT_SUCCESS);
 }
 
-int	key_handler(int keysym, t_mlx *mlx)
+int	key_handler(int keysym, t_mlx *mlx, t_map *map)
 {
 	if (keysym == XK_Escape)
 		close_handler(mlx);
 
 	// manage left and right arrow keys
+	if (keysym == XK_Left)
+		rotate_player(map, -5);
+	if (keysym == XK_Right)
+		rotate_player(map, 5);
 	// manage W, A, S, and D keys 
 	
 	// cub_render(map);
