@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 18:26:10 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/10 16:15:44 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/11 16:05:45 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,13 +130,13 @@ void	dda_debug_ray(int tile, int x, t_map *map, t_mlx *mlx)
 		{
 			map->dda.sideDistX += map->dda.deltaDistX;
 			map->dda.mapX += map->dda.stepX;
-			map->dda.side = 0; // mur vertical
+			map->dda.side = 0; // frontiere vertical
 		}
 		else
 		{
 			map->dda.sideDistY += map->dda.deltaDistY;
 			map->dda.mapY += map->dda.stepY;
-			map->dda.side = 1; // mur horizontal
+			map->dda.side = 1; // frontiere horizontal
 		}
 		if (map->dda.mapY < 0 || map->dda.mapY >= map->map_height)
 			break ;

@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 21:38:21 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/11 14:38:15 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ void	dda_render(int tile, t_map *map, t_mlx *mlx);
 void	dda_debug_ray(int tile, int x, t_map *map, t_mlx *mlx);
 
 //   DISPLAY   //
-void	display_player_data(t_mlx *mlx, t_map *map);
+void	display_data(t_mlx *mlx, t_map *map);
 
 //   TEXTURES   //
 void	load_texture(t_mlx *mlx, t_img *texture, char *path);

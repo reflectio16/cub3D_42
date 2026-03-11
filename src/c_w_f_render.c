@@ -6,11 +6,27 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 15:11:40 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/10 16:14:22 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/11 12:21:20 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static t_img	*choose_current_texture(t_map *map)
+{
+	t_img	*current_tex;
+	current_tex = NULL;
+	
+	if (map->dda.side == 0 && map->dda.rayDirX > 0)
+		current_tex = &map->tex_west;
+	else if (map->dda.side == 0 && map->dda.rayDirX < 0)
+		current_tex = &map->tex_east;
+	else if (map->dda.side == 1 && map->dda.rayDirY < 0)
+		current_tex = &map->tex_south;
+	else if (map->dda.side == 1 && map->dda.rayDirY > 0)
+		current_tex = &map->tex_north;
+	return (current_tex);
+}
 
 void	draw_ceiling(int y, t_map *map, t_mlx *mlx)
 {
@@ -23,22 +39,14 @@ void	draw_ceiling(int y, t_map *map, t_mlx *mlx)
 
 void	draw_wall(int x, int y, t_map *map, t_mlx *mlx)
 {
-	int	color;
 	t_img	*current_tex;
+	int	color;
 	double	step;
 	double	texPos;
 	int		texY;
 	
 	color = 0;
-	current_tex = NULL;
-	if (map->dda.side == 0 && map->dda.rayDirX > 0)
-		current_tex = &map->tex_west;
-	else if (map->dda.side == 0 && map->dda.rayDirX < 0)
-		current_tex = &map->tex_east;
-	else if (map->dda.side == 1 && map->dda.rayDirY < 0)
-		current_tex = &map->tex_south;
-	else if (map->dda.side == 1 && map->dda.rayDirY > 0)
-		current_tex = &map->tex_north;
+	current_tex = choose_current_texture(map);
 	step = (double)current_tex->height / map->dda.lineHeight;
 	texPos = (map->dda.drawStart - HEIGHT / 2 + map->dda.lineHeight / 2) * step;
 	

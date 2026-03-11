@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:19:28 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/06 16:37:50 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/11 14:38:15 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	cub_render(t_mlx *mlx, t_map *map, int tile)
 		mlx->mlx_window, mlx->img.img, 0, 0);
 	
 	// data written on screen	
-	display_player_data(mlx, map);
+	display_data(mlx, map);
 }
