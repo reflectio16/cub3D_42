@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 13:46:44 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 15:58:04 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/11 14:06:52 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ static int	extract_rgb(char *str)
 	if (is_valid_color(str) == -1)
 		return (-1);
 	rgb = ft_split(str, ',');
-	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
+	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3]
+		|| rgb[0][0] == '\0' || rgb[1][0] == '\0'
+		|| rgb[2][0] == '\0' || rgb[2][0] == '\n')
 	{
 		if (rgb)
 			free_split(rgb);
