@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:22:41 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/12 18:51:52 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:31:11 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,24 @@ static void	move_handler(int keysym, t_game *game)
 	}
 }
 
-int	close_handler(t_mlx *mlx)
+int	close_handler(t_game *game)
 {
-	mlx_destroy_image(mlx->connection, mlx->img.img);
-	mlx_destroy_window(mlx->connection, mlx->window);
-	mlx_destroy_display(mlx->connection);
-	free(mlx->connection);
+	mlx_destroy_image(game->mlx.connection, game->data.images.north.img);
+	mlx_destroy_image(game->mlx.connection, game->data.images.south.img);
+	mlx_destroy_image(game->mlx.connection, game->data.images.west.img);
+	mlx_destroy_image(game->mlx.connection, game->data.images.east.img);
+	free_data(&game->data);
+	mlx_destroy_image(game->mlx.connection, game->mlx.img.img);
+	mlx_destroy_window(game->mlx.connection, game->mlx.window);
+	mlx_destroy_display(game->mlx.connection);
+	free(game->mlx.connection);
 	exit(EXIT_SUCCESS);
 }
 
 int	key_handler(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
-		close_handler(&game->mlx);
+		close_handler(game);
 
 	rotation_handler(keysym, game);
 	move_handler(keysym, game);

@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:19:28 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/12 18:56:53 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:21:05 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	handle_pixel(int x, int y, t_mlx *mlx, int color)
 {
-		my_mlx_pixel_put(&mlx->img, x, y, color);		
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+		my_mlx_pixel_put(&mlx->img, x, y, color);
 }
 
 void	cub_render(t_mlx *mlx, t_data *map, int tile)

@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:33:30 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 16:46:12 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:03:18 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 static int	validate_map_chars(char **map)
 {

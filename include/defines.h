@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 15:00:22 by meelma           ###   ########.fr       */
+/*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
+/*   Updated: 2026/03/14 15:01:03 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef DEFINES_H
+# define DEFINES_H
 
-# include <math.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <errno.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include "mlx.h"
-# include "libft.h"
-# include "get_next_line.h"
-
-# include "defines.h"
-# include "structs.h"
-# include "parsing.h"
-# include "rendering.h"
+# define M_PI 3.14159265358979323846
+# define WIDTH 1920
+# define HEIGHT 1080
+# define ELECTRIC_BLUE 0x5E00FF
+# define PRUNE 0x5F0024
 
 #endif

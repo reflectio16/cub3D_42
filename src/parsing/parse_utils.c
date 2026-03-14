@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:47:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 17:50:22 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:22:38 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 int	get_line_width(t_data *data, int current_line)
 {
@@ -47,7 +47,8 @@ t_line_type	get_line_type(char *line)
 
 int	print_error(char *msg)
 {
-	printf("Error: %s\n", msg);
+	ft_putstr_fd("Error: ", 2);
+	ft_putendl_fd(msg, 2);
 	return (-1);
 }
 

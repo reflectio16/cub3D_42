@@ -6,7 +6,7 @@
 #    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/03/12 18:10:37 by meelma           ###   ########.fr        #
+#    Updated: 2026/03/14 14:04:29 by meelma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ $(OBJ_DIR)/gnl/%.o: gnl/%.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 # === Compile Render Objects ===
-$(OBJ_DIR)/render/%.o: src/%.c
+$(OBJ_DIR)/render/%.o: src/rendering/%.c
 	@mkdir -p $(OBJ_DIR)/render
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 

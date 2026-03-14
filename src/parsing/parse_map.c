@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:08:15 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 18:29:21 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:12:11 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 int	add_map_line(char *line, t_list **map_list)
 {
@@ -116,7 +116,11 @@ int	find_player(t_data *data)
 		while (data->map[row][col])
 		{
 			if (loop_map(data, row, col) == 0)
+			{
+				plane_init(data, 0.66);
+				data->map[row][col] = '0';
 				return (0);
+			}
 			col++;
 		}
 		row++;

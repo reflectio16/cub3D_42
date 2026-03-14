@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:58:41 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 18:41:06 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 15:03:26 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 static int	check_args(int ac, char *filename)
 {
@@ -45,12 +45,8 @@ int	main(int ac, char **av)
 		free_data(&game.data);
 		return (1);
 	}
-	plane_init(&game.data, 0.66);
-	
-	// Game initialization
 	game.data.tile = 7;
 	cub_init(&game, &game.mlx, &game.data);
-	
 	cub_render(&game.mlx, &game.data, game.data.tile);
 	mlx_loop(game.mlx.connection);
 	free_data(&game.data);

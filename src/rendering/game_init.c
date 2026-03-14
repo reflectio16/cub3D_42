@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/12 18:48:44 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:17:36 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,72 +23,13 @@ void	events_init(t_game *game)
 	mlx_hook(game->mlx.window, KeyPress, KeyPressMask,
 		key_handler, game);
 	mlx_hook(game->mlx.window, DestroyNotify, StructureNotifyMask,
-		close_handler, &game->mlx);
-}
-
-void	position_init(t_data *map, int i, int j)
-{
-	map->player.x = j + 0.5;
-	map->player.y = i + 0.5;
-}
-
-void	direction_init(t_data *map, int i, int j)
-{
-	if (map->map[i][j] == 'N')
-	{
-		map->player.dir_x = 0;
-		map->player.dir_y = -1;
-	}
-	else if (map->map[i][j] == 'S')
-	{
-		map->player.dir_x = 0;
-		map->player.dir_y = 1;
-	}
-	else if (map->map[i][j] == 'E')
-	{
-		map->player.dir_x = 1;
-		map->player.dir_y = 0;
-	}
-	else if (map->map[i][j] == 'W')
-	{
-		map->player.dir_x = -1;
-		map->player.dir_y = 0;
-	}
+		close_handler, game);
 }
 
 void	plane_init(t_data *map, double k)
 {
 	map->player.plane_x = -map->player.dir_y * k;
 	map->player.plane_y = map->player.dir_x * k;
-}
-
-void	player_init(t_data *map)
-{
-	int	i;
-	int	j;
-	double k;
-	
-	k = 0.66;
-	i = 0;
-	while (map->map[i])
-	{
-		j = 0;
-		while (map->map[i][j])
-		{
-			if (map->map[i][j] == 'N'
-				|| map->map[i][j] == 'S'
-				|| map->map[i][j] == 'E'
-				|| map->map[i][j] == 'W')
-			{
-				position_init(map, i, j);
-				direction_init(map, i, j);
-				plane_init(map, k);
-				map->map[i][j] = '0';
-			}
-			j++;
-		}
-		i++;
-	}
 }
 
 // void	texture_init(t_data *map)

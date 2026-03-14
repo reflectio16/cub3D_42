@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:26:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 16:53:22 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:27:23 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 static int	assign_texture(char **tex, char *path)
 {
@@ -32,18 +32,17 @@ static int	assign_texture(char **tex, char *path)
 static int	validate_texture_path(char *path)
 {
 	int	len;
-	//int	fd;
+	int	fd;
 	
 	if (!path || path[0] == '\0')
 		return (print_error("Empty texture path"));
 	len = ft_strlen(path);
 	if (len < 4 || ft_strncmp(&path[len - 4], ".xpm", 4) != 0)
 		return (print_error("Invalid texture extension"));
-	// File existence check - will uncomment after .xpm files integration
-	//fd = open(path, O_RDONLY);
-	//if (fd == -1)
-	//	return (print_error("Texture file not found"));
-	//close(fd);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (print_error("Texture file not found"));
+	close(fd);
 	return (0); 
 }
 

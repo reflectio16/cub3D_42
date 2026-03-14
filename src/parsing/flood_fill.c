@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 15:39:13 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 16:50:41 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:02:33 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 int	flood_fill(char **map, int x, int y, int height)
 {	

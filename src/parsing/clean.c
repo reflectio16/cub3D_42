@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 17:48:45 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 17:49:59 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:02:28 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 void	free_split(char **arr)
 {

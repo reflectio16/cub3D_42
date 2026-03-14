@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:06:07 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 17:11:20 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 14:14:24 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 static int  is_walkable(char c)
 {
@@ -28,6 +28,7 @@ static int  check_top_bottom(char **map, int height)
             return (-1);
         i++;
     }
+    i = 0;
     while (map[height - 1][i] && map[height - 1][i] != '\n')
     {
         if (is_walkable(map[height - 1][i]))
