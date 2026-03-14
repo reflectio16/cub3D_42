@@ -1,0 +1,20 @@
+# Compiled objects
+obj/
+*.o
+*.a
+
+# Executable
+cub3D
+
+# MiniLibX (downloaded by Makefile)
+minilibx-linux/
+minilibx-linux.tgz
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
