@@ -1,7 +1,7 @@
-NO tests/textures/wall.xpm
-SO tests/textures/bricks.xpm
-WE tests/textures/gold.xpm
-EA tests/textures/wood.xpm
+NO ./textures/wall.xp
+SO ./textures/bricks.xpm
+WE ./textures/gold.xpm
+EA ./textures/wood.xpm
 
 F 220,111,119
 C 225,111,200
