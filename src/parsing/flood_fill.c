@@ -6,19 +6,17 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 15:39:13 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 14:02:33 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 13:35:53 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 int	flood_fill(char **map, int x, int y, int height)
-{	
+{
 	if (y < 0 || y >= height || x < 0 || x >= (int)ft_strlen(map[y]))
 		return (-1);
-	if (map[y][x] == ' ')
-		return (-1);
-	if (map[y][x] == '1' || map[y][x] == 'V')
+	if (map[y][x] == '1' || map[y][x] == ' ' || map[y][x] == 'V')
 		return (0);
 	map[y][x] = 'V';
 	if (flood_fill(map, x + 1, y, height) == -1)
@@ -31,4 +29,3 @@ int	flood_fill(char **map, int x, int y, int height)
 		return (-1);
 	return (0);
 }
-

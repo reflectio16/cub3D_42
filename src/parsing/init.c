@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:14:48 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 17:21:22 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 13:34:31 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int	setup_map(t_data *data, t_list *map_list)
 	if (!data->map)
 		return (print_error("Map is empty"));
 	data->map_width = get_map_width(data->map);
-	if (pad_map_rows(data) == -1)
-    	return (print_error("Memory allocation failed"));
 	if (validate_map(data) == -1)
 		return (-1);
 	find_player(data);

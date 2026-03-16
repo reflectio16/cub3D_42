@@ -6,7 +6,7 @@
 #    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/03/14 17:23:56 by meelma           ###   ########.fr        #
+#    Updated: 2026/03/16 13:32:39 by meelma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_SRCS    = main.c
 GNL_SRCS    = get_next_line.c get_next_line_utils.c
 PARSE_SRCS  = parse_utils.c parse_texture.c parse_color.c \
               parse_map.c validate_map.c flood_fill.c init.c \
-              is_map_closed.c clean.c parse_color_02.c parse_map_02.c
+              is_map_closed.c clean.c parse_color_02.c
 RENDER_SRCS = render.c events.c move.c rotation.c my_mlx_pxl.c \
               dda_debug.c c_w_f_render.c display_data.c load_texture.c \
               wall_floor_utils.c ray_utils.c player_pixel_utils.c game_init.c

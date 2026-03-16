@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 17:30:04 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 13:34:52 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ int			add_map_line(char *line, t_list **map_list);
 char		**list_to_array(t_list *list, int *height);
 int			get_map_width(char **map);
 int			find_player(t_data *data);
-
-/* parse_map_02.c */
-int         pad_map_rows(t_data *data);
 
 /* validate_map.c */
 int			validate_map(t_data *data);
