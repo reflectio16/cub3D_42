@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 19:11:10 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/16 19:30:52 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/17 15:22:16 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 void	set_perp_wall_dist(t_data *map)
 {
 	if (map->dda.side == 0)
-		map->dda.perp_wall_dist = (map->dda.map_x - map->dda.pos_x + (1.0 - map->dda.step_x) / 2.0) / map->dda.ray_dir_x;
+		map->dda.perp_wall_dist = (map->dda.map_x - map->dda.pos_x + (1.0
+					- map->dda.step_x) / 2.0) / map->dda.ray_dir_x;
 	else
-		map->dda.perp_wall_dist = (map->dda.map_y - map->dda.pos_y + (1.0 - map->dda.step_y) / 2.0) / map->dda.ray_dir_y;
+		map->dda.perp_wall_dist = (map->dda.map_y - map->dda.pos_y + (1.0
+					- map->dda.step_y) / 2.0) / map->dda.ray_dir_y;
 }
 
 void	set_wall_x(t_data *map)
 {
 	if (map->dda.side == 0)
-		map->tex.wall_x = map->dda.pos_y + map->dda.perp_wall_dist * map->dda.ray_dir_y;
+		map->tex.wall_x = map->dda.pos_y + map->dda.perp_wall_dist
+			* map->dda.ray_dir_y;
 	else
-		map->tex.wall_x = map->dda.pos_x + map->dda.perp_wall_dist * map->dda.ray_dir_x;
+		map->tex.wall_x = map->dda.pos_x + map->dda.perp_wall_dist
+			* map->dda.ray_dir_x;
 	map->tex.wall_x = map->tex.wall_x - floor(map->tex.wall_x);
 }
 

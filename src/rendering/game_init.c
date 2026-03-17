@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/16 16:35:49 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/17 15:22:46 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static void	malloc_error(void)
 
 void	events_init(t_game *game)
 {
-	mlx_hook(game->mlx.window, KeyPress, KeyPressMask,
-		key_handler, game);
+	mlx_hook(game->mlx.window, KeyPress, KeyPressMask, key_handler, game);
 	mlx_hook(game->mlx.window, DestroyNotify, StructureNotifyMask,
 		close_handler, game);
 }
@@ -52,10 +51,8 @@ void	cub_init(t_game *game, t_mlx *mlx, t_data *map)
 		free(mlx->connection);
 		malloc_error();
 	}
-	mlx->img.addr = mlx_get_data_addr(mlx->img.img,
-		&mlx->img.bpp,
-		&mlx->img.line_len,
-		&mlx->img.endian);
+	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp,
+			&mlx->img.line_len, &mlx->img.endian);
 	events_init(game);
 	load_all_textures(mlx, map);
 }

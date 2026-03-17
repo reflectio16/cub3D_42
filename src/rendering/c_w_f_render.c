@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 15:11:40 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/16 15:58:12 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/17 15:21:28 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static t_img	*choose_current_texture(t_data *map)
 {
 	t_img	*current_tex;
+
 	current_tex = NULL;
-	
 	if (map->dda.side == 0 && map->dda.ray_dir_x > 0)
 		current_tex = &map->images.west;
 	else if (map->dda.side == 0 && map->dda.ray_dir_x < 0)
@@ -40,16 +40,16 @@ void	draw_ceiling(int y, t_data *map, t_mlx *mlx)
 void	draw_wall(int x, int y, t_data *map, t_mlx *mlx)
 {
 	t_img	*current_tex;
-	int	color;
+	int		color;
 	double	step;
 	double	tex_pos;
 	int		tex_y;
-	
+
 	color = 0;
 	current_tex = choose_current_texture(map);
 	step = (double)current_tex->height / map->dda.line_height;
-	tex_pos = (map->dda.draw_start - HEIGHT / 2 + map->dda.line_height / 2) * step;
-	
+	tex_pos = (map->dda.draw_start - HEIGHT / 2 + map->dda.line_height / 2)
+		* step;
 	map->dda.screen_x = x;
 	y = map->dda.draw_start;
 	while (y < map->dda.draw_end)

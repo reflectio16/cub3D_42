@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:22:41 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/14 14:31:11 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/17 15:22:29 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void rotation_handler(int keysym, t_game *game)
+static void	rotation_handler(int keysym, t_game *game)
 {
 	if (keysym == XK_Left)
 	{
@@ -68,7 +68,6 @@ int	key_handler(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
 		close_handler(game);
-
 	rotation_handler(keysym, game);
 	move_handler(keysym, game);
 	return (0);

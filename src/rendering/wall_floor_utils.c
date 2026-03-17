@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 15:55:44 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/10 14:52:03 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/17 15:33:31 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	draw_floor_mm(int tile, t_data *map, t_mlx *mlx)
 
 void	wall_floor_render(int tile, t_mlx *mlx, t_data *map)
 {
-		
 	map->wf.i = 0;
 	while (map->map[map->wf.i])
 	{

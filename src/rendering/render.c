@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:19:28 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/16 17:30:50 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/17 15:33:01 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	cub_render(t_mlx *mlx, t_data *map, int tile)
 	wall_floor_render(tile, mlx, map);
 	player_pixel_render(tile, map, mlx);
 	ray_render(tile, map, mlx);
-	mlx_put_image_to_window(mlx->connection,
-		mlx->window, mlx->img.img, 0, 0);
+	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->img.img, 0, 0);
 }

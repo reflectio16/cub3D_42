@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 16:39:31 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/16 16:33:57 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/17 15:23:23 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	player_pixel_render(int tile, t_data *map, t_mlx *mlx)
 		while (map->player_pixel.dy < 1)
 		{
 			handle_pixel((int)(map->player_pixel.px + map->player_pixel.dx),
-				(int) (map->player_pixel.py + map->player_pixel.dy), mlx, YELLOW);
+				(int)(map->player_pixel.py + map->player_pixel.dy), mlx,
+				YELLOW);
 			map->player_pixel.dy++;
 		}
 		map->player_pixel.dx++;
