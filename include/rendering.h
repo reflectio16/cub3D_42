@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/16 19:45:00 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/18 13:51:25 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void		rotate_player(t_data *data, double rot);
 void		dda_render(int tile, t_data *data, t_mlx *mlx);
 
 /* dda_utils.c */
-void	set_perp_wall_dist(t_data *map);
-void	set_wall_x(t_data *map);
-void	set_tex_x(t_data *map);
-void	set_wall_height(t_data *map);
+void		set_perp_wall_dist(t_data *map);
+void		set_wall_x(t_data *map);
+void		set_tex_x(t_data *map);
+void		set_wall_height(t_data *map);
 
 /* dda_utils_02.c */
 void		dda_draw(int tile, int x, t_data *data, t_mlx *mlx);

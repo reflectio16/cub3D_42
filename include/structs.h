@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/16 17:07:20 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/18 13:52:06 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_ray
 	double	x;
 	double	y;
 	int		l;
-	int 	step;
+	int		step;
 	int		width_x;
 	int		map_x;
 	int		map_y;
