@@ -10,6 +10,8 @@ The program reads a `.cub` scene description file that defines wall textures, fl
 
 This project was developed as a two-person collaboration. meelma handled the file parsing, map validation, and project integration, while fmoulin developed the rendering engine, player movement, and minimap.
 
+`Screenshot of minimap`
+
 ![cub3D screenshot](screenshots/screenshot_01.png)
 
 ### Features
