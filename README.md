@@ -105,9 +105,8 @@ All error messages are written to `stderr`. The parser provides specific error m
 
 ### AI usage
 
-AI was used during development as a code review and debugging aid. Specifically, it was used for:
+AI was used during development as a code review aid. Specifically, it was used for:
 
-- Identifying memory leaks and suggesting fixes for proper resource cleanup
 - Generating test map files to cover edge cases in map validation
 - Structuring the project's header files and Makefile organization
 
