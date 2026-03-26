@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/18 13:51:25 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/26 13:03:26 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void		handle_pixel(int x, int y, t_mlx *mlx, int color);
 /* events.c */
 int			close_handler(t_game *game);
 int			key_handler(int keysym, t_game *game);
+int			key_release_handler(int keysym, t_game *game);
+int			game_loop(t_game *game);
 
 /* move.c */
 void		move_forward(t_data *data);

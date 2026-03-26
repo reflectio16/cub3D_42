@@ -6,48 +6,30 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:22:41 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/17 15:22:29 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/26 13:06:10 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	rotation_handler(int keysym, t_game *game)
+static void	rotation_handler(t_game *game)
 {
-	if (keysym == XK_Left)
-	{
+	if (game->data.keys.left)
 		rotate_player(&game->data, -0.05);
-		cub_render(&game->mlx, &game->data, game->data.tile);
-	}
-	if (keysym == XK_Right)
-	{
+	if (game->data.keys.right)
 		rotate_player(&game->data, 0.05);
-		cub_render(&game->mlx, &game->data, game->data.tile);
-	}
 }
 
-static void	move_handler(int keysym, t_game *game)
+static void	move_handler(t_game *game)
 {
-	if (keysym == XK_w)
-	{
+	if (game->data.keys.w)
 		move_forward(&game->data);
-		cub_render(&game->mlx, &game->data, game->data.tile);
-	}
-	if (keysym == XK_s)
-	{
+	if (game->data.keys.s)
 		move_backward(&game->data);
-		cub_render(&game->mlx, &game->data, game->data.tile);
-	}
-	if (keysym == XK_d)
-	{
+	if (game->data.keys.d)
 		move_right(&game->data);
-		cub_render(&game->mlx, &game->data, game->data.tile);
-	}
-	if (keysym == XK_a)
-	{
+	if (game->data.keys.a)
 		move_left(&game->data);
-		cub_render(&game->mlx, &game->data, game->data.tile);
-	}
 }
 
 int	close_handler(t_game *game)
@@ -68,7 +50,42 @@ int	key_handler(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
 		close_handler(game);
-	rotation_handler(keysym, game);
-	move_handler(keysym, game);
+	if (keysym == XK_w)
+		game->data.keys.w = 1;
+	if (keysym == XK_a)
+		game->data.keys.a = 1;
+	if (keysym == XK_s)
+		game->data.keys.s = 1;
+	if (keysym == XK_d)
+		game->data.keys.d = 1;
+	if (keysym == XK_Left)
+		game->data.keys.left = 1;
+	if (keysym == XK_Right)
+		game->data.keys.right = 1;
+	return (0);
+}
+
+int	key_release_handler(int keysym, t_game *game)
+{
+	if (keysym == XK_w)
+		game->data.keys.w = 0;
+	if (keysym == XK_a)
+		game->data.keys.a = 0;
+	if (keysym == XK_s)
+		game->data.keys.s = 0;
+	if (keysym == XK_d)
+		game->data.keys.d = 0;
+	if (keysym == XK_Left)
+		game->data.keys.left = 0;
+	if (keysym == XK_Right)
+		game->data.keys.right = 0;
+	return (0);
+}
+	
+int game_loop(t_game *game)
+{
+	rotation_handler(game);
+	move_handler(game);
+	cub_render(&game->mlx, &game->data, game->data.tile);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/18 13:52:06 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:27:58 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,16 @@ typedef struct s_tex
 	int		height;
 }	t_tex;
 
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+} t_keys;
+
 /*
 ** ============== MAIN DATA STRUCTURE ==============
 */
@@ -174,6 +184,7 @@ typedef struct s_data
 	t_ray			ray;
 	t_contour		contour;
 	t_tex			tex;
+	t_keys			keys;
 	int				tile;
 }	t_data;
 

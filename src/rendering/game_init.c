@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/17 15:22:46 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/26 13:01:36 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ static void	malloc_error(void)
 void	events_init(t_game *game)
 {
 	mlx_hook(game->mlx.window, KeyPress, KeyPressMask, key_handler, game);
+	mlx_hook(game->mlx.window, KeyRelease, KeyReleaseMask, key_release_handler, game);
 	mlx_hook(game->mlx.window, DestroyNotify, StructureNotifyMask,
 		close_handler, game);
+	mlx_loop_hook(game->mlx.connection, game_loop, game);
 }
 
 void	plane_init(t_data *map, double k)
